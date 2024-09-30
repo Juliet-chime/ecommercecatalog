@@ -42,43 +42,28 @@ const CustomInputField = ({
     <>
       <div className="flex flex-col">
         {!!label && <label className={labelStyle}>{label}</label>}
-
-        {/* {type === "select" ? (
+        <div className="relative">
           <input
             className={className}
-            type={'select'}
+            type={
+              type === "password" ? (showPassword ? "text" : "password") : type
+            }
             disabled={disabled}
             {...props}
           />
-        ) : ( */}
-          <div className="relative">
-            <input
-              className={className}
-              type={
-                type === "password"
-                  ? showPassword
-                    ? "text"
-                    : "password"
-                  : type
-              }
-              disabled={disabled}
-              {...props}
-            />
-            {type === "password" && (
-              <div
-                className="absolute right-[10px] top-[16px] cursor-pointer"
-                onClick={onShowPassword}
-              >
-                {showPassword ? (
-                  <AiFillEyeInvisible fontSize={18} />
-                ) : (
-                  <AiFillEye fontSize={18} />
-                )}
-              </div>
-            )}
-          </div>
-        {/* )} */}
-        {/* {!!props.error && <ErrorComponent>{props.error}</ErrorComponent>} */}
+          {type === "password" && (
+            <div
+              className="absolute right-[10px] top-[16px] cursor-pointer"
+              onClick={onShowPassword}
+            >
+              {showPassword ? (
+                <AiFillEyeInvisible fontSize={18} />
+              ) : (
+                <AiFillEye fontSize={18} />
+              )}
+            </div>
+          )}
+        </div>
       </div>
     </>
   );

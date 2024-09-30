@@ -5,14 +5,36 @@ const products = () => {
 };
 
 const getSingleProduct = (id) => {
-    return `products/${id}`;
-  };
+  return `products/${id}`;
+};
 const categories = () => {
-    return `products/categories`;
-  };
+  return `products/categories`;
+};
 
-  const getProductinspecificCategory = (category) => {
-        return `products/category/${category}`
-  }
+const getProductinspecificCategory = (category) => {
+  return `products/category/${category}`;
+};
 
-export { products,categories,getProductinspecificCategory,getSingleProduct };
+//cart
+
+const addCart = () => {
+  return `carts`;
+};
+
+const getUserCart = (user = 2) => {
+  return `carts/user/${user}`;
+};
+
+//authentication
+const loginUser = () => {
+  return `auth/login`;
+};
+export {
+  products,
+  categories,
+  getProductinspecificCategory,
+  getSingleProduct,
+  loginUser,
+  addCart,
+  getUserCart,
+};

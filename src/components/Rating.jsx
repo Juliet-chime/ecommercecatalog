@@ -44,9 +44,9 @@ const Rating = ({ initialRating, onChange, maxRating = 5 }) => {
         <span
           key={index}
           className={`cursor-pointer ${getRatingClass(index + 1)}`}
-          //   onMouseOver={() => handleMouseOver(index + 1)}
-          //   onMouseOut={handleMouseOut}
-          //   onClick={() => handleClick(index + 1)}
+          onMouseOver={() => handleMouseOver(index + 1)}
+          onMouseOut={handleMouseOut}
+          onClick={() => handleClick(index + 1)}
         >
           {getRatingFraction(rating) === "half" &&
           index + 1 === Math.floor(rating) + 1 ? (
@@ -61,9 +61,7 @@ const Rating = ({ initialRating, onChange, maxRating = 5 }) => {
           )}
         </span>
       ))}
-      <span className="ml-2 font-semibold">
-        {rating}
-      </span>
+      <span className="ml-2 font-semibold">{rating}</span>
     </div>
   );
 };

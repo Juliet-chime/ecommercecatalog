@@ -1,5 +1,4 @@
 import React from "react";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 
 const CustomSelect = ({
   label,
@@ -38,11 +37,10 @@ const CustomSelect = ({
       <div className="flex flex-col">
         {!!label && <label className={labelStyle}>{label}</label>}
         <div>
-          <select className={className} disabled={disabled} {...props} >
+          <select className={className} disabled={disabled} {...props}>
             {children}
           </select>
         </div>
-        {/* {!!props.error && <ErrorComponent>{props.error}</ErrorComponent>} */}
       </div>
     </>
   );

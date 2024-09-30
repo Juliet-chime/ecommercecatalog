@@ -1,22 +1,16 @@
 import axios from "axios";
-// import { isSessionExpired } from '../utils/authUtils'
 
 const API_URL = import.meta.env.VITE_BASE_URL;
-
-console.log(API_URL)
 
 let instance;
 
 function setAuthorization(headers) {
-  const token = localStorage.getItem("authToken");
-  // const newUserToken = localStorage.getItem('newUserToken')
+  const token = localStorage.getItem("token");
 
-  // if (!!newUserToken) {
-  //     headers.Authorization = `Bearer ${newUserToken}`
-  // } else if (!!token) {
-  //     headers.Authorization = `Bearer ${token}`
-  // }
-  // return headers
+  if (!!token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+  return headers;
 }
 
 function instantiateInstance() {
@@ -28,7 +22,7 @@ function instantiateInstance() {
   headers = setAuthorization(headers);
 
   if (!!instance) {
-    // instance.defaults.headers.common["Authorization"] = headers.Authorization;
+    instance.defaults.headers.common["Authorization"] = headers.Authorization;
   } else {
     instance = axios.create({
       baseURL: API_URL,
@@ -39,7 +33,7 @@ function instantiateInstance() {
 }
 
 export const makeApiRequest = async ({
-  method='GET',
+  method = "GET",
   url,
   data = null,
   params = null,
@@ -76,20 +70,6 @@ export const makeApiRequest = async ({
 
     return res.data;
   } catch (e) {
-     console.log(e,'pppp')
-    // if (
-    //   e.response.status === 401 &&
-    //   e.response.data.errorMessage
-    //     .toLowerCase()
-    //     .includes("error occured while validating token")
-    // ) {
-    // //   const token = localStorage.getItem("authToken");
-    // //   const isExpired = isSessionExpired(token);
-    // //   if (isExpired) {
-    // //     localStorage.setItem("authToken", "");
-    // //     window?.location?.reload();
-    // //   }
-    // }
     throw e;
   }
 };

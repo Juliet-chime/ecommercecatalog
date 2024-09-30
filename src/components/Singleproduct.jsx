@@ -12,20 +12,18 @@ const Singleproduct = ({ data, onViewProductDetails }) => {
         <img
           src={data.image}
           alt={data.title}
-          className="w-full h-full object-contain"
+          className="w-full h-full object-contain mix-blend-multiply"
         />
       </div>
       <div className="py-3 group-hover:px-2">
         <p className="font-medium text-[9px]">{data.title}</p>
-        {/* <div className='flex items-center justify-between'>
-<p className='font-extrabold text-[12px]'> {currencyAmount(data.price,'USD')}</p>
-<p className='font-light text-[12px]'>{capitalize(data.category)}</p>
-</div> */}
         <p className="font-extrabold text-[12px] mt-1">
           {" "}
           {currencyAmount(data.price, "USD")}
         </p>
-        <p className="font-medium text-[8px] text-red-600">{capitalize(data.category)}</p>
+        <p className="font-medium text-[8px] text-red-600">
+          {capitalize(data.category)}
+        </p>
       </div>
     </div>
   );

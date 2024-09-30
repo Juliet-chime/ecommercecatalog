@@ -6,21 +6,20 @@ import { Authentication } from "./pages/auth/Authentication";
 export const routes = [
   {
     path: "/authentication",
-    element: <Authentication/>
+    element: <Authentication />,
   },
-    {
-      element: <Layout />,
+  {
+    element: <Layout />,
 
-      children: [
-        {
-          path: "/",
-          element: <HomePage/>
-        },
-        {
-          path: "/product/:id",
-          element: <ProductDetails/>
-        },
-      ],
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
       },
-    
-]
+      {
+        path: "/product/:id",
+        element: <ProductDetails />,
+      },
+    ],
+  },
+];

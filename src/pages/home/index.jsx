@@ -13,6 +13,7 @@ import {
 } from "../../services/api";
 import { formatData } from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
+import EmptyState from "../../components/emptyState";
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -84,18 +85,20 @@ const HomePage = () => {
 
   return (
     <div>
-      <section className="py-20">
-        <h1 className="text-5xl font-bold font-serif">Get Fabulous</h1>
-        <p className="text-lg max-w-[600px]">
+      <section className="py-10 md:py-20">
+        <h1 className="text-3xl md:text-5xl font-bold font-serif">
+          Get Fabulous
+        </h1>
+        <p className="text-sm md:text-lg max-w-[600px]">
           Fashion is not just about clothes, it's about confidence, attitude,
           and embracing your unique style.
         </p>
       </section>
 
-      <div className="w-full md:w-[70%] m-auto ">
+      <div className="w-full lg:w-[90%] xl:w-[70%] m-auto ">
         <h1 className="text-2xl font-bold font-serif">Browse Our Product</h1>
         <div className="grid grid-cols-2 gap-4 md:gap-32 py-4">
-          <div className="">
+          <div>
             <CustomInputField
               type={"text"}
               placeholder="Filter by title, price, and category..."
@@ -119,7 +122,7 @@ const HomePage = () => {
                 ? "loading.."
                 : allCategories.map((category, idx) => {
                     return (
-                      <option value={category}>
+                      <option value={category} key={idx}>
                         {formatData.capitalize(category)}
                       </option>
                     );
@@ -133,21 +136,27 @@ const HomePage = () => {
             <Loader component={TailSpin} color="#bbbbbb" />
           </div>
         ) : (
-          <>
-            <div className="mt-4 grid grid-cols-2 md:grid-cols-4 2xl:md:grid-cols-6 place-content-center gap-8">
-              {filteredProduct?.map((data, idx) => {
-                return (
-                  <Singleproduct
-                    key={idx}
-                    data={data}
-                    onViewProductDetails={() => {
-                      navigate(`/product/${data.id}`);
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </>
+          <div className="shadow-sm mt-6">
+            {!filteredProduct?.length ? (
+              <div>
+                <EmptyState text="There are no products found" />
+              </div>
+            ) : (
+              <div className="mt-4 grid grid-cols-2 md:grid-cols-4 2xl:md:grid-cols-6 place-content-center gap-8">
+                {filteredProduct?.map((data, idx) => {
+                  return (
+                    <Singleproduct
+                      key={idx}
+                      data={data}
+                      onViewProductDetails={() => {
+                        navigate(`/product/${data.id}`);
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </div>
