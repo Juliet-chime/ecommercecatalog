@@ -1,18 +1,20 @@
 import React from "react";
+import CustomButton from "./fields/CustomButton";
 
-const QuantitySymbol = ({
-  icon: IconComponent,
-  onUpdateQuantity,
-  ...props
-}) => {
+const QuantitySymbol = ({ icon, onUpdateQuantity, disabledBtn }) => {
   return (
-    <div
-      className="w-6 h-6 bg-[#cccccc] rounded-full flex items-center justify-center cursor-pointer"
-      onClick={onUpdateQuantity}
-    >
-      <p>
-        <IconComponent {...props} />
-      </p>
+    <div>
+      <CustomButton
+        styleProps={{
+          backgroundColor: "[#cccccc]",
+          radius: "rounded-full",
+          height: "h-8",
+          width: "w-8",
+        }}
+        icon={icon}
+        onClick={onUpdateQuantity}
+        disabled={disabledBtn}
+      />
     </div>
   );
 };

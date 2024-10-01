@@ -23,6 +23,7 @@ const CustomInputField = ({
     size = "text-sm",
     weight = "font-normal",
     radius = "rounded-lg",
+    margin = "m-0",
   } = fieldStyleProps;
 
   const className = [
@@ -33,6 +34,7 @@ const CustomInputField = ({
     `${width}`,
     `${height}`,
     `${border}`,
+    `${margin}`,
     disabled ? "opacity-5" : "opacity-1",
     `p-3`,
     `outline-0`,

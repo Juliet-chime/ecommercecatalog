@@ -29,6 +29,11 @@ const getUserCart = (user = 2) => {
 const loginUser = () => {
   return `auth/login`;
 };
+
+const signup = () => {
+  return `users`;
+};
+
 export {
   products,
   categories,
@@ -37,4 +42,5 @@ export {
   loginUser,
   addCart,
   getUserCart,
+  signup,
 };

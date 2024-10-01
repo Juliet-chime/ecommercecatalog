@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useEffect, useMemo } from "react";
 import { BiCartDownload } from "react-icons/bi";
 import CustomButton from "./fields/CustomButton";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
 import ShoppingCart from "./ShoppingCart";
+import logo from "../assets/images/logo/logo2.png";
+import { makeApiRequest } from "../services/baseApi";
+import { products } from "../services/api";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const { showCart, setShowCart, allProduct, cartItems, setCartItems } =
-    useAppContext();
+  const {
+    showCart,
+    setShowCart,
+    allProduct,
+    cartItems,
+    setCartItems,
+    setAllProduct,
+  } = useAppContext();
 
-  const cartData = cartItems.map((data) => {
-    const product = allProduct.find(
-      (product) => product?.id === (data?.products || [])[0]?.productId
-    );
-    return { ...product, quantity: (data.products || [])[0].quantity };
-  });
+  const cartData = useMemo(() => {
+    return cartItems.map((data) => {
+      const product = allProduct.find((products) => {
+        return products?.id === (data?.products || [])[0]?.productId;
+      });
+      return { ...product, quantity: (data.products || [])[0].quantity };
+    });
+  }, [allProduct, cartItems]);
 
   const totalValue = cartData
     .reduce((accu, currentValue) => {
@@ -44,11 +55,27 @@ const Navbar = () => {
     setCartItems(newItemList);
   };
 
+  useEffect(() => {
+    const storedCart = localStorage.getItem("userCart");
+    setCartItems(storedCart !== null ? JSON.parse(storedCart) : []);
+  }, []);
+
+  useEffect(() => {
+    async function getProduct() {
+      try {
+        const res = await makeApiRequest({
+          url: products(),
+        });
+        setAllProduct(res);
+      } catch (e) {}
+    }
+    getProduct();
+  }, []);
+
   return (
     <div className="flex justify-between items-center py-8 relative">
-      <div>
-        <p> LOGO</p>
-        {/* <img src={logo} className="w-full h-full object-contain" /> */}
+      <div className="w-10 h-10">
+        <img src={logo} className="w-full h-full object-contain" />
       </div>
       <div className="flex gap-4 items-center">
         <div className="relative cursor-pointer" onClick={onViewCart}>
@@ -92,12 +119,6 @@ const Navbar = () => {
             />
           </div>
         )}
-
-        {/* {!user ? null : (
-          <div>
-            <p className="font-bold text-[16px]"> Emeka 👋</p>
-          </div>
-        )} */}
       </div>
       {showCart ? (
         <ShoppingCart
