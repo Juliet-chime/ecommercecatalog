@@ -13,7 +13,7 @@ import {
 } from "../../services/api";
 import { formatData } from "../../utils/formatter";
 import { useNavigate } from "react-router-dom";
-import EmptyState from "../../components/emptyState";
+import EmptyState from "../../components/EmptyState";
 
 const HomePage = () => {
   const navigate = useNavigate();

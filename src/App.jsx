@@ -5,7 +5,7 @@ function App() {
   const router = createBrowserRouter(routes);
 
   return (
-    <div className="px-4 md:px-20 lg:px-32">
+    <div className="px-4 md:px-10 lg:px-32">
       <RouterProvider router={router} />
     </div>
   );
