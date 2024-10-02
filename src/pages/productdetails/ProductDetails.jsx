@@ -4,7 +4,7 @@ import { useAppContext } from "../../context/AppContext";
 import { addCart, getSingleProduct } from "../../services/api";
 import { makeApiRequest } from "../../services/baseApi";
 import { formatData } from "../../utils/formatter";
-import Rating from "../../components/rating";
+import Rating from "../../components/Rating";
 import CustomButton from "../../components/fields/CustomButton";
 import { FiMinus, FiPlus } from "react-icons/fi";
 import QuantitySymbol from "../../components/QuantitySymbol";
