@@ -2,7 +2,7 @@ import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { formatData } from "../utils/formatter";
 import SingleCartItem from "./SingleCartItem";
-import EmptyState from "./emptyState";
+import EmptyState from "./EmptyState";
 import CustomButton from "./fields/CustomButton";
 
 const ShoppingCart = ({
